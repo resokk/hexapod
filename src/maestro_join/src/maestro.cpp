@@ -102,7 +102,7 @@ void joinStateMessage(sensor_msgs::JointStateConstPtr message)
 			{
 				channel = l.channel;
 				float position = message->position[i];
-				val = std::round((l.max - l.min) * (position - l.minAngle) / (l.maxAngle - l.minAngle)) + l.min;
+				val = round((l.max - l.min) * (position - l.minAngle) / (l.maxAngle - l.minAngle)) + l.min;
 			}
 		}
 
