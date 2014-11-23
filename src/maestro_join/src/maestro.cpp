@@ -14,8 +14,7 @@ struct LegChannel {
 	unsigned short center;
 	unsigned short pulse;
 	float angle;
-	char direction;
-
+	signed char direction;
 };
 
 LegChannel channels[] =
