@@ -47,7 +47,7 @@ LegChannel channels[] =
 
 bool isOpen()
 {
-        return fileDescriptor != -1;
+    return fileDescriptor != -1;
 }
 
 void openPort(const std::string& portName)
@@ -55,6 +55,7 @@ void openPort(const std::string& portName)
 	if (!isOpen())
 	{
 		fileDescriptor = open(portName.c_str(), O_RDWR | O_NOCTTY);
+		ROS_INFO("Open port %d", fileDescriptor);
 	}
 }
 
@@ -74,7 +75,7 @@ bool writeBytes(const unsigned char* data, unsigned int numBytesToWrite)
 		return false;
 	}
 
-	ssize_t ret = -1;//write(fileDescriptor, data, numBytesToWrite);
+	ssize_t ret = write(fileDescriptor, data, numBytesToWrite);
 	if (ret == -1 || ret != numBytesToWrite)
 	{
 		ROS_ERROR("Port writing. err=%d\n", errno);
@@ -108,7 +109,7 @@ void joinStateMessage(sensor_msgs::JointStateConstPtr message)
 
 		if (channel != 0)
 		{
-			ROS_INFO("JOIN (%s - %d)=%d", message->name[i].c_str(), channel, val);
+			//ROS_INFO("JOIN (%s - %d)=%d", message->name[i].c_str(), channel, val);
 			buff.push_back(channel);
 			buff.push_back(val & 0x7F);
 			buff.push_back((val >> 7) & 0x7F);
