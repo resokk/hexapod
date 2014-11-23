@@ -116,7 +116,7 @@ void joinStateMessage(sensor_msgs::JointStateConstPtr message)
 	}
 
 	unsigned char* data = buff.data();
-	//writeBytes(data, buff.size());
+	writeBytes(data, buff.size());
 }
 
 int main(int argc, char **argv)
