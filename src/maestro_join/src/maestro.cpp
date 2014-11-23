@@ -89,7 +89,7 @@ void joinStateMessage(sensor_msgs::JointStateConstPtr message)
 {
 	std::vector<unsigned char> buff;
 	unsigned short count = message->position.size();
-	buff.push_back(0xAA);
+	buff.push_back(0x9F);
 	buff.push_back(count);
 	for(int i = 0; i < count; i++)
 	{
