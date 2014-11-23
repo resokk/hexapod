@@ -42,7 +42,7 @@ LegChannel channels[] =
 	{ "joint_r_3_f1",	13,	1500, 1100,	M_PI_2,	-1 },
 	{ "joint_r_3_f2",	14,	1500, 1100,	M_PI_2,	1 },
 	{ "joint_r_3_f3",	15,	1500, 1100,	M_PI_2,	-1 },
-	{ "joint_r_3_f4",	15,	1500, 1100,	M_PI_2,	-1 },
+	{ "joint_r_3_f4",	16,	1500, 1100,	M_PI_2,	-1 },
 };
 
 bool isOpen()
