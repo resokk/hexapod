@@ -87,10 +87,12 @@ bool writeBytes(const unsigned char* data, unsigned int numBytesToWrite)
 
 void joinStateMessage(sensor_msgs::JointStateConstPtr message)
 {
-	std::vector<unsigned char> buff;
 	unsigned short count = message->position.size();
-	buff.push_back(0x9F);
-	buff.push_back(count);
+	unsigned char data[51];
+	data[0] = 0x9F; // compact protocol
+	data[1] = 24; // channel count
+	data[2] = 1; // start from first channel
+
 	for(int i = 0; i < count; i++)
 	{
 		unsigned char channel = 0;
@@ -110,14 +112,12 @@ void joinStateMessage(sensor_msgs::JointStateConstPtr message)
 		if (channel != 0)
 		{
 			//ROS_INFO("JOIN (%s - %d)=%d", message->name[i].c_str(), channel, val);
-			buff.push_back(channel);
-			buff.push_back(val & 0x7F);
-			buff.push_back((val >> 7) & 0x7F);
+			data[channel * 2 + 1] = val & 0x7F;
+			data[channel * 2 + 2] = (val >> 7) & 0x7F;
 		}
 	}
 
-	unsigned char* data = buff.data();
-	writeBytes(data, buff.size());
+	writeBytes(data, 51);
 }
 
 int main(int argc, char **argv)
