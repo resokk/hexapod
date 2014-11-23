@@ -71,13 +71,6 @@ void closePort()
 
 bool writeBytes(const unsigned char* data, unsigned int numBytesToWrite)
 {
-	for(int j = 0; j < numBytesToWrite; j++)
-	{
-	    printf("\\x%02X", data[j]);
-	}
-	printf("\r\n");
-	return true;
-
 	if (!isOpen())
 	{
 		return false;
