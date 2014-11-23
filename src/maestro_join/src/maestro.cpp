@@ -56,6 +56,7 @@ void openPort(const std::string& portName)
 	{
 		fileDescriptor = open(portName.c_str(), O_RDWR | O_NOCTTY);
 		ROS_INFO("Open port %d", fileDescriptor);
+		printf("test");
 	}
 }
 
@@ -76,6 +77,7 @@ bool writeBytes(const unsigned char* data, unsigned int numBytesToWrite)
 	}
 
 	ssize_t ret = write(fileDescriptor, data, numBytesToWrite);
+
 	if (ret == -1 || ret != numBytesToWrite)
 	{
 		ROS_ERROR("Port writing. err=%d\n", errno);
@@ -91,7 +93,7 @@ void joinStateMessage(sensor_msgs::JointStateConstPtr message)
 	unsigned char data[51];
 	data[0] = 0x9F; // compact protocol
 	data[1] = 24; // channel count
-	data[2] = 1; // start from first channel
+	data[2] = 0; // start from first channel
 
 	for(int i = 0; i < count; i++)
 	{
