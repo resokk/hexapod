@@ -71,6 +71,13 @@ void closePort()
 
 bool writeBytes(const unsigned char* data, unsigned int numBytesToWrite)
 {
+	for(int j = 0; j < numBytesToWrite; j++)
+	{
+	    printf("\\x%02X", data[j]);
+	}
+	printf("\r\n");
+	return true;
+
 	if (!isOpen())
 	{
 		return false;
@@ -107,13 +114,13 @@ void joinStateMessage(sensor_msgs::JointStateConstPtr message)
 			{
 				channel = l.channel;
 				float position = message->position[i];
-				val = round((l.max - l.min) * (position - l.minAngle) / (l.maxAngle - l.minAngle)) + l.min;
+				val = 4 * round((l.max - l.min) * (position - l.minAngle) / (l.maxAngle - l.minAngle) + l.min);
 			}
 		}
 
 		if (channel != 0)
 		{
-			//ROS_INFO("JOIN (%s - %d)=%d", message->name[i].c_str(), channel, val);
+			ROS_INFO("JOIN (%s - %d)=%d", message->name[i].c_str(), channel, val);
 			data[channel * 2 + 1] = val & 0x7F;
 			data[channel * 2 + 2] = (val >> 7) & 0x7F;
 		}
