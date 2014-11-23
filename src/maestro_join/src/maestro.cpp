@@ -75,7 +75,7 @@ bool writeBytes(const unsigned char* data, unsigned int numBytesToWrite)
 		return false;
 	}
 
-	ssize_t ret = numBytesToWrite;//write(fileDescriptor, data, numBytesToWrite);
+	ssize_t ret = write(fileDescriptor, data, numBytesToWrite);
 	if (ret == -1 || ret != numBytesToWrite)
 	{
 		ROS_ERROR("Port writing. err=%d\n", errno);
