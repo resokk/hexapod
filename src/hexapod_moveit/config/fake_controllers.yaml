@@ -1,0 +1,37 @@
+controller_list:
+  - name: fake_leg_l1_controller
+    joints:
+      - joint_l_1_f1
+      - joint_l_1_f2
+      - joint_l_1_f3
+      - joint_l_1_f4
+  - name: fake_leg_l2_controller
+    joints:
+      - joint_l_2_f1
+      - joint_l_2_f2
+      - joint_l_2_f3
+      - joint_l_2_f4
+  - name: fake_leg_l3_controller
+    joints:
+      - joint_l_3_f1
+      - joint_l_3_f2
+      - joint_l_3_f3
+      - joint_l_3_f4
+  - name: fake_leg_r1_controller
+    joints:
+      - joint_r_1_f1
+      - joint_r_1_f2
+      - joint_r_1_f3
+      - joint_r_1_f4
+  - name: fake_leg_r2_controller
+    joints:
+      - joint_r_2_f1
+      - joint_r_2_f2
+      - joint_r_2_f3
+      - joint_r_2_f4
+  - name: fake_leg_r3_controller
+    joints:
+      - joint_r_3_f1
+      - joint_r_3_f2
+      - joint_r_3_f3
+      - joint_r_3_f4
